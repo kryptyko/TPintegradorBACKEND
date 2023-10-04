@@ -4,6 +4,7 @@ from config import Config
 from .routes.user_route import bp_users
 from .routes.server_route import bp_servers
 from .routes.canales_route import bp_canales
+from .routes.mensajes_route import bp_mensajes
 from APP.database import DatabaseConnection
 from flask_cors import CORS, cross_origin
 def inicializar_app():
@@ -12,8 +13,8 @@ def inicializar_app():
    app.config['CORS_HEADERS'] = 'Content-Type'
    app.config['CORS_SUPPORTS_CREDENTIALS'] = True
    app.config['CORS_SEND_WILDCARD'] = False
-   CORS(app, origins='http://127.0.0.1:5501')
-   #CORS(app, supports_credentials=True)
+   #CORS(app, origins='http://127.0.0.1:5501')
+   CORS(app, supports_credentials=True)
    
    app.config.from_object(Config)
    DatabaseConnection.set_config(app.config)
@@ -23,6 +24,6 @@ def inicializar_app():
    app.register_blueprint(bp_users, url_prefix="/users")
    app.register_blueprint(bp_servers, url_prefix="/server")
    app.register_blueprint(bp_canales, url_prefix="/canales")
-   #app .register_blueprint(bp_servers, url_prefix="/messages")
+   app.register_blueprint(bp_mensajes, url_prefix="/mensajes")
    #app.register_blueprint(errors)
    return app

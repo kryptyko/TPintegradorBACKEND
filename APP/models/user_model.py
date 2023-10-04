@@ -65,7 +65,7 @@ class User:
         query = """select servidoresid, se.servidoresnombre, servidoresdescripcion from disgord.servidores as se inner join disgord.usuarios_servidores as us on se.servidoresid = us.usuarios_servidoresservidor
 where us.usuarios_servidoresusuario =  %(user_id)s"""
         params = user.__dict__
-        result = DatabaseConnection. fetch_all (query, params)
+        result = DatabaseConnection.fetch_all(query, params)
         
         if result:
             return result
