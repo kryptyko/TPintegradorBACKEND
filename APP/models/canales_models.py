@@ -53,7 +53,7 @@ class Canal:
     @classmethod
     def get_by_id(cls, canales_id):
         # Realiza la consulta SQL para obtener los canales por ID del servidor
-        query = f"SELECT canalesid, canalesnombre, canalesdescripcion, canalesservidor, canalescreado_por FROM disgord.canales WHERE canalesservidor = {canales_id}"
+        query = f"SELECT canalesid, canalesnombre, canalesdescripcion, canalesservidor, canalescreado_por FROM disgord.canales WHERE canalesservidor = {canales_id} order by mensajesfechahora asc"
         result = DatabaseConnection.fetch_all(query)
 
         return result
